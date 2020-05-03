@@ -1,0 +1,36 @@
+<div fxFill fxLayout="column">
+  <div fxFlex="none">
+    <mat-toolbar>Mineroute</mat-toolbar>
+  </div>
+
+  <div fxFlex class="content-box">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let server of (servers | async)" (opened)="loadServer(server.domain)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{server.domain}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{server.sockaddr}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <mat-list-item *ngFor="let player of (serverMetas[server.domain] | async)?.players">
+            {{player}}
+          </mat-list-item>
+        </mat-list>
+
+        <div fxLayout="row" fxLayoutAlign="end">
+          <button fxFlex="none" mat-button color="warn" (click)="deleteServer(server.domain)">Delete</button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="fab-box">
+      <button mat-fab color="primary" (click)="add()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

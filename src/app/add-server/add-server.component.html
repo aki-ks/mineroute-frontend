@@ -1,0 +1,24 @@
+<form (ngSubmit)="addServer()" [formGroup]="serverForm">
+  <h1 mat-dialog-title>Server Hinzufügen</h1>
+
+  <mat-dialog-content fxLayout="column">
+    <mat-form-field fxFlex="none">
+      <mat-label>Domain</mat-label>
+      <label>
+        <input formControlName="domain" matInput placeholder="a.mcserver.de" >
+      </label>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="none">
+      <mat-label>Socket Address</mat-label>
+      <label>
+        <input formControlName="sockaddr" matInput placeholder="127.0.0.1:25565" >
+      </label>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="submit" [disabled]="serverForm.invalid">Hinzufügen</button>
+    <button mat-button [mat-dialog-close]="false">Abbrechen</button>
+  </mat-dialog-actions>
+</form>
